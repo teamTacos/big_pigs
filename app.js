@@ -8,7 +8,31 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+//var app = express();
+
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+server.listen(3000);
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+        io.emit('chat message', msg);
+    });
+});
+io.to('some room').emit('some event');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +48,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/jquery/jquery.js', function(req, res) {
+    res.sendfile(__dirname + '/node_modules/jquery/dist/jquery.min.js');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
