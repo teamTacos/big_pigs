@@ -30,3 +30,12 @@
 .panel-body {
     padding-bottom: 0;
 }
+.name {
+    display: inline-block;
+    width: 70%;
+}
+.score {
+    display: inline-block;
+    text-align: right;
+    width: 30%;
+}

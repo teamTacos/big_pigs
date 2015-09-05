@@ -4,15 +4,27 @@ extends layout
 block content
   .container-fluid
       .player-list.col-md-3
-        .container-fluid.well
-          span players
+        panel.panel-primary
+          .panel-heading
+            .panel-title Players
+          .panel-body
+            ul.list-group
+              li.list-group-item
+                .h4.name Bob
+                .badge 35
+              li.list-group-item
+                .h4.name Jim
+                .badge 12
+              li.list-group-item.active
+                .h4.name Omar
+                h4.badge 97
       .game-area.col-md-4
         .container-fluid.well
           span game
       .chat-area.col-md-5
-        .container-fluid.well
-          .panel
-            .panel-header
+        .container-fluid
+          .panel-primary
+            .panel-heading
               .panel-title Chat
             .panel-body
               .chat-list-container
