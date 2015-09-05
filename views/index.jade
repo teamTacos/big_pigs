@@ -1,20 +1,19 @@
 extends layout
 
 block content
-    .well
-      .col-lg-12
+    .well.col-lg-12
+
         form.form-horizontal(action='/room')
           legend Create a New Game
           .form-group
-            label.col-lg-2.control-label(for='gameName') Game Name
             .col-lg-12
+              label.control-label(for='gameName') Game Name
               input#gameName.form-control(type='text', placeholder='Game Name')
           .form-group
-            label.col-lg-2.control-label(for='playerName') Player Name
             .col-lg-12
+              label.control-label(for='playerName') Player Name
               input#playerName.form-control(type='text', placeholder='Player Name')
           .form-group
-            .col-lg-10.col-lg-offset-2
+            .col-lg-12
               button.btn.btn-default(type='reset') Cancel
-              span
               button#createRoom.btn.btn-primary(type='submit') Create Game
