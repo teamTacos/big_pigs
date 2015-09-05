@@ -1,0 +1,29 @@
+extends layout
+
+
+block content
+  .container-fluid
+      .player-list.col-md-3
+        .container-fluid.well
+          span players
+      .game-area.col-md-4
+        .container-fluid.well
+          span game
+      .chat-area.col-md-5
+        .container-fluid.well
+          .panel
+            .panel-header
+              .panel-title Chat
+            .panel-body
+              .chat-list-container
+                ul#messages
+            .panel-body
+              form.chat-form(action='')
+                .form-group
+                  input#m(autocomplete='off')
+                  button Send
+
+
+
+  script(src='/socket.io/socket.io.js')
+  script(src='/javascript/roomSample.js')

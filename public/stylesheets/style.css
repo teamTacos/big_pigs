@@ -6,3 +6,27 @@
     margin-left: 50%;
     margin-right: 0;
 }
+
+.chat-list-container {
+    height: 60vh;
+    overflow-y: scroll;
+}
+.chat-area ul {
+   bottom: 0;
+}
+.chat-form { position: relative; bottom: 0; }
+.chat-form input { width: 85%;}
+
+#messages { list-style-type: none; margin: 0; padding: 0; }
+#messages li { padding: 5px 10px; }
+#messages li:nth-child(odd) { background: #eee; }
+
+.panel {
+    margin-bottom: 0px;
+    background-color: transparent;
+    -webkit-box-shadow: 0 0 0 #fff;
+    box-shadow: 0 0 0 #fff;
+}
+.panel-body {
+    padding-bottom: 0;
+}

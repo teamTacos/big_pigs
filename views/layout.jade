@@ -34,7 +34,7 @@ html
         .modal-content
           .modal-body
             form.form-horizontal(action='/room')
-              button.close.cancel-join x
+              a.btn.close.cancel-join x
               legend Join Room
               .form-group
                 label.col-lg-2.control-label(for='playerName') Name
@@ -42,7 +42,7 @@ html
                   input#playerName.form-control(type='text', placeholder='Name')
               .form-group.modal-footer
                 a.btn.btn-default.cancel-join Cancel
-                button#joinRoom.btn.btn-primary(type='submit') Join Room
+                button#joinRoom.btn.btn-primary(type='submit') Join Game
 
 
 
