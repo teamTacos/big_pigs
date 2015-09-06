@@ -19,8 +19,21 @@ block content
                 .h4.name Omar
                 h4.badge 97
       .game-area.col-md-4
-        .container-fluid.well
-          span game
+        .container-fluid
+          .panel-primary
+            .panel-heading
+              .panel-title Game Play
+            .panel-body
+              .container-fluid
+                .clipzone
+                  img.die.die-4(src='images/dice-26772_640.png')
+                .clipzone
+                  img.die.die-6(src='images/dice-26772_640.png')
+              .container-fluid
+                .h3 Current score: 17
+              .container-fluid
+                button.btn.btn-primary Hold
+                button.btn.btn-primary Roll Again
       .chat-area.col-md-5
         .container-fluid
           .panel-primary
@@ -33,7 +46,7 @@ block content
               form.chat-form(action='')
                 .form-group
                   input#m(autocomplete='off')
-                  button Send
+                  button.btn.btn-primary Send
 
 
 

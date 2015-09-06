@@ -6,7 +6,9 @@
     margin-left: 50%;
     margin-right: 0;
 }
-
+.btn {
+    margin: 0 10px;
+}
 .chat-list-container {
     height: 60vh;
     overflow-y: scroll;
@@ -15,7 +17,7 @@
    bottom: 0;
 }
 .chat-form { position: relative; bottom: 0; }
-.chat-form input { width: 85%;}
+.chat-form input { width: 80%; margin: 0 4px;}
 
 #messages { list-style-type: none; margin: 0; padding: 0; }
 #messages li { padding: 5px 10px; }
@@ -38,4 +40,42 @@
     display: inline-block;
     text-align: right;
     width: 30%;
+}
+
+.clipzone
+{
+    position: relative;
+    width: 107px;
+    height: 105px;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0 10px;
+}
+.die
+{
+    position: relative;
+}
+.die-1
+{
+    left: 2px;
+}
+.die-2
+{
+    left: -105px;
+}
+.die-3
+{
+    left: -214px;
+}
+.die-4
+{
+    left: -321px;
+}
+.die-5
+{
+    left: -427px;
+}
+.die-6
+{
+    left: -536px;
 }
