@@ -6,8 +6,8 @@
     margin-left: 50%;
     margin-right: 0;
 }
-.btn {
-    margin: 0 10px;
+.game-area .btn {
+    margin: 10px 10px;
 }
 .chat-list-container {
     height: 60vh;
