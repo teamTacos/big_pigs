@@ -14,6 +14,18 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+var Player = function(name, id) {
+    this.name = name;
+    this.id = id;
+    this.score = 0;
+    this.turn = false;
+};
+
+var current_player = 0;
+
+//require('./player.js');
+var players = [];
+
 server.listen(3000);
 
 app.use(function(req, res, next) {
@@ -27,11 +39,44 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function(socket){
+    socket.on('join game', function(name){
+        console.log('new blood ' + name);
+        players.push(new Player(name, socket.id));
+        if (players.length == 1) {
+            console.log(players[0].turn);
+            players[0].turn = true;
+        }
+        console.log(players);
+        io.emit('player list', players);
+    });
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);
     });
+    socket.on('pass turn', function(score){
+        var current_player = 0;
+        for(player in players) {
+            if (players[player].turn == true) {
+                current_player = player;
+            }
+        }
+        players[current_player].turn = true;
+        console.log('player:' + current_player);
+        current_player ++;
+        io.emit('player list', players);
+    });
+    socket.on('disconnect', function() {
+        console.log(socket.id + ' disconnected');
+        for(var i = players.length - 1; i >= 0; i--) {
+            if(players[i].id === socket.id) {
+                players.splice(i, 1);
+            }
+        }
+        io.emit('player list', players);
+    });
 });
 io.to('some room').emit('some event');
+
+
 
 
 // view engine setup

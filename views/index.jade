@@ -4,16 +4,15 @@ block content
     .well.col-lg-12
 
         form.form-horizontal(action='/room')
-          legend Create a New Game
-          .form-group
-            .col-lg-12
-              label.control-label(for='gameName') Game Name
-              input#gameName.form-control(type='text', placeholder='Game Name')
+          legend Join the Game
           .form-group
             .col-lg-12
               label.control-label(for='playerName') Player Name
               input#playerName.form-control(type='text', placeholder='Player Name')
           .form-group
             .col-lg-12
-              button.btn.btn-default(type='reset') Cancel
-              button#createRoom.btn.btn-primary(type='submit') Create Game
+              a.btn.btn-default Cancel
+              a#joinGame.btn.btn-primary(href='/room') Join Game
+
+    script(src='/socket.io/socket.io.js')
+    script(src='/javascript/roomSample.js')

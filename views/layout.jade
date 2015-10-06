@@ -13,36 +13,10 @@ html
         .container-fluid
           .navbar-header
             a.navbar-brand= title
-          .collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-right
-              li.dropdown
-                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button') Available Games
-                  span#available-games.badge 2
-                  span.caret
-                ul.dropdown-menu(role='menu')
-                  li.available-game
-                    a(href='#') Thing 1
-                      span.badge.badge-right 2
-                  li.available-game
-                    a(href='#') Thing 2
-                      span.badge.badge-right 4
     .container-fluid
       block content
     .footer
-    .join-room.modal
-      .modal-dialog
-        .modal-content
-          .modal-body
-            form.form-horizontal(action='/room')
-              a.btn.close.cancel-join x
-              legend Join Room
-              .form-group
-                label.col-lg-2.control-label(for='playerName') Name
-                .col-lg-10
-                  input#playerName.form-control(type='text', placeholder='Name')
-              .form-group.modal-footer
-                a.btn.btn-default.cancel-join Cancel
-                button#joinRoom.btn.btn-primary(type='submit') Join Game
+
 
 
 

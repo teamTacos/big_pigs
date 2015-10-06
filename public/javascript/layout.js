@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
     $('.available-game').click(function() {
         $('.join-room').show();
@@ -5,7 +7,10 @@ $(document).ready(function() {
     $('.cancel-join').click(function() {
         $('.join-room').hide();
     });
-    $('#join-room').click(function(){
-
-    })
+    $('.modal').show();
+    //$('#joinGame').click(function(){
+    //    alert('blah');
+    //    name = $('#playerName').val();
+    //    socket.emit('join game', name)
+    //})
 });

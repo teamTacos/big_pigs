@@ -8,16 +8,16 @@ block content
           .panel-heading
             .panel-title Players
           .panel-body
-            ul.list-group
+            ul#player-list.list-group
               li.list-group-item
-                .h4.name Bob
+                h4.name Bob
                 .badge 35
               li.list-group-item
-                .h4.name Jim
+                h4.name Jim
                 .badge 12
               li.list-group-item.active
-                .h4.name Omar
-                h4.badge 97
+                h4.name Omar
+                .badge 97
       .game-area.col-md-4
         .container-fluid
           .panel-primary
@@ -32,8 +32,8 @@ block content
               .container-fluid
                 .h3 Current score: 17
               .container-fluid
-                button.btn.btn-primary Hold
-                button.btn.btn-primary Roll Again
+                button#hold.btn.btn-primary Hold
+                button#roll-again.btn.btn-primary Roll Again
       .chat-area.col-md-5
         .container-fluid
           .panel-primary
@@ -47,6 +47,20 @@ block content
                 .form-group
                   input#m(autocomplete='off')
                   button.btn.btn-primary Send
+
+  .overlay
+    .modal-dialog.modal-content
+      .modal-body
+        form.form-horizontal(action='/room')
+          legend Join the Game
+          .form-group
+            .col-lg-12
+              label.control-label(for='playerName') Player Name
+              input#playerName.form-control(type='text', placeholder='Player Name')
+          .form-group
+            .col-lg-12
+              //a.btn.btn-default Cancel
+              a#joinGame.btn.btn-primary(href='#') Join Game
 
 
 
