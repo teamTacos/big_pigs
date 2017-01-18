@@ -4,19 +4,48 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/bootstrap.yeti.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/socket.io/socket.io.js')
     script(src='/jquery/jquery.js')
     script(src='/javascript/bootstrap.min.js')
     script(src='/javascript/layout.js')
+    script(src='/javascript/client.js')
+    script(src='/javascript/game.js')
   body
     .bs-component
       .navbar.navbar-default
         .container-fluid
           .navbar-header
             a.navbar-brand= title
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button') Available Games
+                  span#available-games.badge 2
+                  span.caret
+                ul#games.dropdown-menu(role='menu')
+                  li.available-game
+                    a(href='#') Thing 1
+                    span.badge 2
+                  li.available-game
+                    a(href='#') Thing 2
+                    span.badge 4
     .container-fluid
       block content
     .footer
-
+    .join-room.modal
+      .modal-dialog
+        .modal-content
+          .modal-body
+            form.form-horizontal(action='/room')
+              a.btn.close.cancel-join x
+              legend#roomName Join Room :: Test 123
+              .form-group
+                label.col-lg-2.control-label(for='playerName') Name
+                .col-lg-10
+                  input#playerName.form-control(type='text', placeholder='Name')
+              .form-group.modal-footer
+                a.btn.btn-default.cancel-join Cancel
+                button#joinRoom.btn.btn-primary(type='submit', onClick='joinRoom()') Join Game
 
 
 

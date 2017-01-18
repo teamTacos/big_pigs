@@ -1,7 +1,14 @@
 var socket = io();
+var playerList;
+
+function playerName(player) {
+    return player.id === socket.id;
+}
 
 $('form').submit(function(){
-    socket.emit('chat message', $('#m').val());
+    console.log(socket.id);
+    var player = playerList.find(playerName);
+    socket.emit('chat message', player.name + ': ' + $('#m').val());
     $('#m').val('');
     return false;
 });
@@ -21,16 +28,24 @@ $('#joinGame').click(function(){
 
 socket.on('player list', function(players){
     $('#player-list').empty();
-    for(x in players) {
-        var player;
-        if (players[x].turn === true ) {
-            player = '<li class="list-group-item active"><h4 class="name">' + players[x].name + '</h4><span class="badge">' + players[x].score + '</span></li>';
-        } else {
-            player = '<li class="list-group-item"><h4 class="name">' + players[x].name + '</h4><span class="badge">' + players[x].score + '</span></li>';
-        }
-        //player.add('');
-        $('#player-list').append(player);
-    }
+    playerList = players;
+    players.forEach(function(player){
+       if (player.turn === true) {
+           $('#player-list').append('<li class="list-group-item active"><h4 class="name">' + player.name + '</h4><span class="badge">' + player.score + '</span></li>')
+       } else {
+           $('#player-list').append('<li class="list-group-item"><h4 class="name">' + player.name + '</h4><span class="badge">' + player.score + '</span></li>')
+       }
+    });
+    // for(x in players) {
+    //     var player;
+    //     if (players[x].turn === true ) {
+    //         player = '<li class="list-group-item active"><h4 class="name">' + players[x].name + '</h4><span class="badge">' + players[x].score + '</span></li>';
+    //     } else {
+    //         player = '<li class="list-group-item"><h4 class="name">' + players[x].name + '</h4><span class="badge">' + players[x].score + '</span></li>';
+    //     }
+    //     //player.add('');
+    //     $('#player-list').append(player);
+    // }
     //alert(socket.id);
 });
 
@@ -38,3 +53,4 @@ $('#hold').click(function() {
     score = 5;
     socket.emit('pass turn', score);
 });
+

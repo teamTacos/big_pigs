@@ -7,10 +7,10 @@ $(document).ready(function() {
     $('.cancel-join').click(function() {
         $('.join-room').hide();
     });
-    $('.modal').show();
-    //$('#joinGame').click(function(){
+    $('.modal').hide();
+    // $('#joinGame').click(function(){
     //    alert('blah');
     //    name = $('#playerName').val();
     //    socket.emit('join game', name)
-    //})
+    // })
 });

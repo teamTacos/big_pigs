@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+//var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -12,7 +12,9 @@ var users = require('./routes/users');
 
 var app = require('express')();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+//var io = require('socket.io')(server);
+var chatServer = require('./server')(server);
+//var users = require('./routes/users');
 
 var Player = function(name, id) {
     this.name = name;
@@ -38,6 +40,24 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+function passTurn(players) {
+  var playerIndex;
+  players.forEach(function(player, i){
+    if (player.turn === true) {
+      player.turn = false;
+      playerIndex = i;
+    }
+  });
+  playerIndex ++;
+  if(playerIndex > (players.length - 1) || !playerIndex) {
+    playerIndex = 0;
+  }
+  console.log('index ' + playerIndex);
+  if(players.length === 0) {return}
+  players[playerIndex].turn = true;
+  io.emit('player list', players);
+}
+
 io.on('connection', function(socket){
     socket.on('join game', function(name){
         console.log('new blood ' + name);
@@ -52,31 +72,37 @@ io.on('connection', function(socket){
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);
     });
-    socket.on('pass turn', function(score){
-        var current_player = 0;
-        for(player in players) {
-            if (players[player].turn == true) {
-                current_player = player;
-            }
-        }
-        players[current_player].turn = true;
+    socket.on('pass turn', function(){
+      console.log('the turn has been passed');
+      passTurn(players);
+      console.log(players);
+
         console.log('player:' + current_player);
-        current_player ++;
-        io.emit('player list', players);
+
+        //io.emit('player list', players);
     });
     socket.on('disconnect', function() {
         console.log(socket.id + ' disconnected');
-        for(var i = players.length - 1; i >= 0; i--) {
-            if(players[i].id === socket.id) {
-                players.splice(i, 1);
+        var isTurn = false;
+        players.forEach(function(player, i){
+          if (player.id === socket.id) {
+            players.splice(i, 1);
+            io.emit('player list', players);
+            if (player.turn === true) {
+              console.log(player.name + ' disconnected and it was his turn');
+              isTurn = true;
+            } else {
+              console.log(player.name + ' disconnected ... meh.');
             }
+          }
+        });
+        if (isTurn) {
+          console.log(players);
+          passTurn(players);
         }
-        io.emit('player list', players);
     });
 });
 io.to('some room').emit('some event');
-
-
 
 
 // view engine setup
@@ -85,7 +111,7 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -95,7 +121,7 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.get('/jquery/jquery.js', function(req, res) {
-    res.sendfile(__dirname + '/node_modules/jquery/dist/jquery.min.js');
+    res.sendFile(__dirname + '/node_modules/jquery/dist/jquery.min.js');
 });
 
 // catch 404 and forward to error handler
