@@ -14,22 +14,27 @@ var gameTurn = {
 
 };
 
+
+
 //gameTurn.click(passTurn());
 socket.on('player list', function(players){
   //alert('socket: ' + socket.id);
   var currentPlayer;
-
   players.forEach(function(player) {
     if (player.turn == true) {
       currentPlayer = player;
     }
   });
+  console.log(currentPlayer);
+  if(!currentPlayer) { gameTurn.passTurn }
   if(socket.id != currentPlayer.id) {
-    gameTurn.holdButton.disabled = true;
-    gameTurn.rollButton.disabled = true;
+    console.log('not my turn');
+    $('#hold').attr('disabled', 'disabled');
+    $('#roll-again').attr('disabled', 'disabled');
   } else {
-    gameTurn.holdButton.disabled = false;
-    gameTurn.rollButton.disabled = false;
+    console.log('my turn');
+    $('#hold').removeAttr('disabled');
+    $('#roll-again').removeAttr('disabled');
   }
 
 

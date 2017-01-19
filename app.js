@@ -72,8 +72,13 @@ io.on('connection', function(socket){
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);
     });
-    socket.on('pass turn', function(){
+    socket.on('pass turn', function(score){
       console.log('the turn has been passed');
+      players.forEach(function(player) {
+        if (player.id === socket.id) {
+          player.score += score;
+        }
+      });
       passTurn(players);
       console.log(players);
 
@@ -81,7 +86,13 @@ io.on('connection', function(socket){
 
         //io.emit('player list', players);
     });
-    socket.on('disconnect', function() {
+    socket.on('dice roll', function(roll) {
+      console.log('dice were rolled');
+      console.log({roll});
+      io.emit('dice rolled', roll);
+    });
+
+  socket.on('disconnect', function() {
         console.log(socket.id + ' disconnected');
         var isTurn = false;
         players.forEach(function(player, i){
