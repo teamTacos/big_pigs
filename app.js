@@ -28,7 +28,7 @@ var current_player = 0;
 //require('./player.js');
 var players = [];
 
-server.listen(80);
+server.listen(3000);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -113,7 +113,7 @@ io.on('connection', function(socket){
         }
     });
 });
-io.to('some room').emit('some event');
+//io.to('some room').emit('some event');
 
 
 // view engine setup
