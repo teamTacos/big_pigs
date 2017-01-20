@@ -47,8 +47,8 @@ socket.on('pass turn', function(){
 
 $('#joinGame').click(function(){
     name = $('#playerName').val();
-    joinRoom(name);
-    //socket.emit('join game', name);
+    //joinRoom(name);
+    socket.emit('join game', name);
     $('.overlay').hide();
 });
 
