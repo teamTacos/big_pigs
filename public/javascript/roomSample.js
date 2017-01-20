@@ -1,4 +1,5 @@
-var socket = io();
+//var socket = io.connect('http://localhost');
+var socket = io.connect('http://big-pigs.herokuapp.com');
 var playerList;
 var score = 0;
 

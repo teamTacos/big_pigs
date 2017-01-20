@@ -19,7 +19,8 @@ $(document).ready(function (){
 
     })
 });
-var socket = io();
+//var socket = io();
+var socket = io.connect('http://big-pigs.herokuapp.com');
 $('form').submit(function(){
     socket.emit('chat message', $('#m').val());
     $('#m').val('');

@@ -1,5 +1,5 @@
-var socket = io();
-
+//var socket = io();
+var socket = io.connect('http://big-pigs.herokuapp.com');
 
 var gameTurn = {
   holdButton: $('#hold'),
