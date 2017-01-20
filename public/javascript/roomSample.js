@@ -22,6 +22,10 @@ function scoreDice(die1, die2) {
 
 }
 
+function joinRoom(name) {
+    socket.emit('join game', name)
+}
+
 $('form').submit(function(){
     console.log(socket.id);
     var player = playerList.find(byId);
@@ -43,7 +47,14 @@ socket.on('pass turn', function(){
 
 $('#joinGame').click(function(){
     name = $('#playerName').val();
-    socket.emit('join game', name);
+    joinRoom(name);
+    //socket.emit('join game', name);
+    $('.overlay').hide();
+});
+
+$('#play-again').click(function(){
+   name = $('#playerName2').val();
+    joinRoom(name)
     $('.overlay').hide();
 });
 

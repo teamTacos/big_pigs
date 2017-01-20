@@ -42,26 +42,26 @@ socket.on('listAvailableChatRooms', function(rooms){
 
 
 
-var joinRoom = function(roomName, playerName) {
-
-    $('.navbar-brand').innerText = 'BigPigs :: ' + roomName;
-    // var roomExists = false;
-    // var room = this.roomname;
-    // if (typeof room === 'undefined' || (typeof room === 'string' && room.length === 0)) {
-    //    $scope.error.create = 'Please enter a room name';
-    // } else {
-    //    socket.emit('checkUniqueRoomName', room, function (data) {
-    //        roomExists = data.result;
-    //        if (roomExists) {
-    //            $scope.error.create = 'Room ' + room + ' already exists.';
-    //        } else {
-    //            socket.emit('createRoom', room);
-    //            $scope.error.create = '';
-    //            if (!$scope.user.inroom) {
-    //                $scope.messages = [];
-    //                $scope.roomname = '';
-    //            }
-    //        }
-    //    });
-    // }
-};
+// var joinRoom = function(roomName, playerName) {
+//
+//     $('.navbar-brand').innerText = 'BigPigs :: ' + roomName;
+//     // var roomExists = false;
+//     // var room = this.roomname;
+//     // if (typeof room === 'undefined' || (typeof room === 'string' && room.length === 0)) {
+//     //    $scope.error.create = 'Please enter a room name';
+//     // } else {
+//     //    socket.emit('checkUniqueRoomName', room, function (data) {
+//     //        roomExists = data.result;
+//     //        if (roomExists) {
+//     //            $scope.error.create = 'Room ' + room + ' already exists.';
+//     //        } else {
+//     //            socket.emit('createRoom', room);
+//     //            $scope.error.create = '';
+//     //            if (!$scope.user.inroom) {
+//     //                $scope.messages = [];
+//     //                $scope.roomname = '';
+//     //            }
+//     //        }
+//     //    });
+//     // }
+// };
