@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
     $('.available-game').click(function() {
         $('.join-room').show();
