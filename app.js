@@ -59,6 +59,7 @@ function passTurn(players) {
 }
 
 io.on('connection', function(socket){
+  console.log(socket.id + ' connected');
     socket.on('join game', function(name){
         console.log('new blood ' + name);
         players.push(new Player(name, socket.id));
@@ -70,6 +71,7 @@ io.on('connection', function(socket){
         io.emit('player list', players);
     });
     socket.on('chat message', function(msg){
+        console.log('message: ' + msg);
         io.emit('chat message', msg);
     });
     socket.on('pass turn', function(score){

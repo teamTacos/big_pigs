@@ -1,5 +1,5 @@
-//var socket = io.connect('http://localhost');
-var socket = io.connect('http://big-pigs.herokuapp.com');
+var socket = io.connect('http://localhost:3000');
+// var socket = io.connect('big-pigs:server');
 var playerList;
 var score = 0;
 
@@ -29,8 +29,9 @@ function joinRoom(name) {
 
 $('form').submit(function(){
     console.log(socket.id);
-    var player = playerList.find(byId);
-    socket.emit('chat message', player.name + ': ' + $('#m').val());
+    //var player = playerList.find(byId);
+    socket.emit('chat message', $('#m').val());
+    // socket.emit('chat message', player.name + ': ' + $('#m').val());
     $('#m').val('');
     return false;
 });
