@@ -23,9 +23,9 @@ When("{int} players have joined the game") do |player_count|
 end
 
 Then("I should see each of the player names in the list of players") do
-  	@browsers.each_with_index do |browser|
-  		0.upto(@browsers.count - 1) do |index|
-  			expect(browser.main_page.player_names).to eql @names
+	@browsers.each_with_index do |browser|
+		0.upto(@browsers.count - 1) do |index|
+			expect(browser.main_page.player_names).to eql @names
 		end
-  	end
+	end
 end

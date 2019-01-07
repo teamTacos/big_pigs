@@ -8,7 +8,8 @@ var passTurn =  function(){
 }
 
 var roll = function(){
-	alert('they see me rollin');
+	//alert('they see me rollin');
+  return 5;
 }
 
 var activateGameControls = function() {
@@ -31,21 +32,21 @@ rollButton.click(function(){
 });
 
 socket.on('player list', function(players){
-    var currentPlayer;
-    players.forEach(function(player) {
-      if (player.turn == true) {
-        currentPlayer = player;
-      }
-    });
-    if(!currentPlayer) { passTurn() }
+  var currentPlayer;
+  players.forEach(function(player) {
+    if (player.turn == true) {
+      currentPlayer = player;
+    }
+  });
+  if(!currentPlayer) { passTurn() }
 
-    players.forEach(function(player) {
-      if (socket.id == currentPlayer.id) {
-      	console.log('my turn')
-          activateGameControls();
-      } else {
-      	console.log('not your turn')
-      	disableGameControls();
-      }
-    });
+  players.forEach(function(player) {
+    if (socket.id == currentPlayer.id) {
+    	console.log('my turn')
+      activateGameControls();
+    } else {
+    	console.log('not your turn')
+    	disableGameControls();
+    }
+  });
 });  
