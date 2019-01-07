@@ -1,11 +1,12 @@
 When("a new player joins the game") do
   @big_pigs = BigPigs.new
-  @big_pigs.main_page.new_player_name.set('Player 1')
+  @name = Faker::Name.first_name
+  @big_pigs.main_page.new_player_name.set(@name)
   @big_pigs.main_page.join_room.click
 end
 
 Then("I should see that new player is in the list of players") do
-  expect(@big_pigs.main_page.player_list.text).to include 'Player 1'
+  expect(@big_pigs.main_page.player_list.text).to include @name
 end
 
 When("{int} players have joined the game") do |player_count|
@@ -13,7 +14,7 @@ When("{int} players have joined the game") do |player_count|
 	@names = []
 	player_count.times do |num|
 		big_pigs = BigPigs.new
-		name = Faker::Name.name
+		name = Faker::Name.first_name
 		@names << name
 		big_pigs.main_page.new_player_name.set(name)
   		big_pigs.main_page.join_room.click
