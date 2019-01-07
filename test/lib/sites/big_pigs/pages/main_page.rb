@@ -10,6 +10,10 @@ module BigPigs
 
   	element(:player_list) { browser.ul(id: 'player-list') }
 
+  	def player_names
+  		player_list.h4s.collect(&:text)
+  	end
+
   end
 
 end

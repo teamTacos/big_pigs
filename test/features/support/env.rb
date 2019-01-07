@@ -1,6 +1,7 @@
 require 'taza'
 require 'os'
 require 'pry'
+require 'faker'
 
 ENV['TAZA_ENV'] ||= 'isolation'
 ENV['BROWSER'] ||= 'chrome'
