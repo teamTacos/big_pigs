@@ -2,14 +2,22 @@ var socket = io.connect('http://localhost:3000');
 
 var holdButton = $('#hold')
 var rollButton = $('#roll-again')
+var die1 = new Die('#die1')
+var die2 = new Die('#die2')
 
 var passTurn =  function(){
 	socket.emit('pass turn');
 }
 
 var roll = function(){
-	//alert('they see me rollin');
-  return 5;
+	die1.roll();
+  die2.roll();
+}
+
+var rollDie = function() {
+  var die = [1, 2, 3, 4, 5, 6];
+  var randomIndex = Math.floor(Math.random() * die.length);
+  return die.splice(randomIndex, 1)[0];
 }
 
 var activateGameControls = function() {

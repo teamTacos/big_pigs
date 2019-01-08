@@ -14,6 +14,11 @@ module BigPigs
     element(:send_message) { browser.button(id: 'send-message')}
     element(:message_list) { browser.ul(id: 'messages')}
 
+    element(:die1) { browser.img(id: 'die1')}
+    element(:die2) { browser.img(id: 'die2')}
+    element(:hold) { browser.button(id: 'hold')}
+    element(:roll_again) { browser.button(id: 'roll-again')}
+
   	def player_names
   		player_list.h4s.collect(&:text)
   	end
