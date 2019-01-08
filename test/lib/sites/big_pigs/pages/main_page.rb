@@ -9,6 +9,7 @@ module BigPigs
   	element(:join_room) { browser.link(id: 'joinGame')}
 
   	element(:player_list) { browser.ul(id: 'player-list')}
+    element(:player_by_name) { |name| player_list.li(text: /#{name}/)}
 
   	element(:new_message) { browser.text_field(id: 'm')}
     element(:send_message) { browser.button(id: 'send-message')}
