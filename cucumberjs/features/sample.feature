@@ -1,4 +1,3 @@
-@starter
 Feature: Sample
 
   Scenario: Trying to get it all wired up
