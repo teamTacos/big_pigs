@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "sourceMap": true,
+    "lib": [
+      "es2015",
+      "es2016",
+      "es6",
+      "es7",
+      "dom"
+    ],
+    "target": "es6",
+    "types": [
+      "node",
+      "mocha",
+      "chai",
+      "cucumber"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "@myadp/dto": [
+        "../myadp/src/modules/dto/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "./node_modules",
+    "./dist"
+  ]
+}

@@ -1,9 +1,11 @@
 var socket = io.connect('http://localhost:3000');
 
-var holdButton = $('#hold')
-var rollButton = $('#roll-again')
+var $holdButton = $('#hold')
+var $rollButton = $('#roll-again')
 var die1 = new Die('#die1')
 var die2 = new Die('#die2')
+var $currentScore = $('#current-score')
+var currentScoreValue = 0
 
 var passTurn =  function(){
 	socket.emit('pass turn');
@@ -12,6 +14,7 @@ var passTurn =  function(){
 var roll = function(){
 	die1.roll();
   die2.roll();
+  return({die1: die1, die2: die2});
 }
 
 var rollDie = function() {
@@ -21,22 +24,37 @@ var rollDie = function() {
 }
 
 var activateGameControls = function() {
-	holdButton.removeAttr('disabled');
-	rollButton.removeAttr('disabled');
+	$holdButton.removeAttr('disabled');
+	$rollButton.removeAttr('disabled');
 }
 
 var disableGameControls = function() {
-	holdButton.attr('disabled', 'disabled');
-	rollButton.attr('disabled', 'disabled');
+	$holdButton.attr('disabled', 'disabled');
+	$rollButton.attr('disabled', 'disabled');
 }
 
-holdButton.click(function(){
-    console.log('clicky click')
+$holdButton.click(function(){
 	passTurn()
 });
 
-rollButton.click(function(){
-    roll();
+$rollButton.click(function(){
+    socket.emit('dice roll', roll());
+});
+
+var updateDieView = function(die) {
+  var $die = $(die.target);
+  $die.removeClass();
+  $die.addClass('die die-' + die.value)
+}
+
+socket.on('dice rolled', function(roll){
+  console.log(roll);
+  console.log(roll.die1);
+  updateDieView(roll.die1);
+  updateDieView(roll.die2);
+
+  currentScoreValue = currentScoreValue + roll.die1.value + roll.die2.value;
+  $currentScore.text(currentScoreValue)
 });
 
 socket.on('player list', function(players){

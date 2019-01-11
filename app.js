@@ -71,7 +71,7 @@ io.on('connection', function(socket){
         io.emit('player list', players);
     });
     socket.on('chat message', function(msg){
-        console.log('message: ' + msg);
+        console.log('message: ' + msg.player.name + ': ' + msg.text);
         io.emit('chat message', msg);
     });
     socket.on('pass turn', function(score){
