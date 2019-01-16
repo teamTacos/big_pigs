@@ -97,18 +97,19 @@ io.on('connection', function(socket){
   socket.on('disconnect', function() {
         console.log(socket.id + ' disconnected');
         var isTurn = false;
-        players.forEach(function(player, i){
-          if (player.id === socket.id) {
-            players.splice(i, 1);
-            io.emit('player list', players);
+
+        players = players.filter(function(player, index, arr) {
+          player.id === socket.id
+
+          io.emit('player list', players);
             if (player.turn === true) {
               console.log(player.name + ' disconnected and it was his turn');
               isTurn = true;
             } else {
               console.log(player.name + ' disconnected ... meh.');
             }
-          }
         });
+
         if (isTurn) {
           console.log(players);
           passTurn(players);
