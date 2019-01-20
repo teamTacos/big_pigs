@@ -1,4 +1,4 @@
-var socket = io.connect(window.location.hostname+':443');
+var socket = io.connect(window.location.hostname+':80');
 
 var $holdButton = $('#hold')
 var $rollButton = $('#roll-again')

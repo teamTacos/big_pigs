@@ -28,7 +28,10 @@ var current_player = 0;
 //require('./player.js');
 var players = [];
 
-server.listen(443);
+//server.listen(443);
+var listener = server.listen(80, function(){
+  console.log('Listening on port ' + listener.address().port);
+});
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
