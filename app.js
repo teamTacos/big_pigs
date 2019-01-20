@@ -29,7 +29,7 @@ var current_player = 0;
 var players = [];
 
 //server.listen(443);
-var listener = server.listen(80, function(){
+var listener = server.listen(3000, function(){
   console.log('Listening on port ' + listener.address().port);
 });
 
