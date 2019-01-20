@@ -1,4 +1,4 @@
-var socket = io.connect(window.location.hostname+':'+window.location.port, {transports: ['websocket']});
+var socket = io.connect(window.location.hostname+':3000', {transports: ['websocket']});
 // var socket = io.connect('big-pigs:server');
 var playerList;
 
