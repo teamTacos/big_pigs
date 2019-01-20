@@ -28,7 +28,7 @@ var current_player = 0;
 //require('./player.js');
 var players = [];
 
-server.listen(3000);
+server.listen(443);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
