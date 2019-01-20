@@ -1,5 +1,4 @@
 //var socket = io.connect(window.location.hostname+':80');
-var socket = io();
 
 var $holdButton = $('#hold')
 var $rollButton = $('#roll-again')

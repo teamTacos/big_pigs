@@ -1,5 +1,5 @@
 //var socket = io.connect(window.location.hostname+':80', {transports: ['websocket']});
-var socket = io();
+const socket = io();
 var playerList;
 
 function byId(player) {
