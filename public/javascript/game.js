@@ -9,7 +9,9 @@ var $currentScore = $('#current-score')
 var currentScoreValue = 0
 
 var passTurn =  function(){
-	socket.emit('pass turn');
+  socket.emit('pass turn', currentScoreValue);
+  currentScoreValue = 0;
+  $currentScore.text(currentScoreValue);
 }
 
 var roll = function(){
