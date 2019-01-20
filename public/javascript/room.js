@@ -1,4 +1,4 @@
-var socket = io.connect('https://big-pigs.herokuapp.com', {transports: ['websocket']});
+var socket = io.connect(window.location.hostname+':'+window.location.port, {transports: ['websocket']});
 // var socket = io.connect('big-pigs:server');
 var playerList;
 

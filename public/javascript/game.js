@@ -1,4 +1,4 @@
-var socket = io.connect('https://big-pigs.herokuapp.com');
+var socket = io.connect(window.location.hostname+':'+window.location.port);
 
 var $holdButton = $('#hold')
 var $rollButton = $('#roll-again')
