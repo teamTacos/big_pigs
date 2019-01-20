@@ -9,7 +9,7 @@
     "lint:ts:fix": "npm run lint:ts -- --fix",
     "lint:changed": "tslintgs -g ../",
     "lint:cucumber": "gherkin-lint",
-    "precucumber": "echo 'Linting: Cucumber' && npm run lint:cucumber && webdriver-manager update",
+    "ignore-precucumber": "echo 'Linting: Cucumber' && npm run lint:cucumber && webdriver-manager update",
     "cucumber": "protractor ./cucumber.conf.js",
     "cucumber:starter": "npm run cucumber -- --cucumberOpts.profile=starter"
   },
