@@ -7,6 +7,9 @@ var die1 = new Die('#die1')
 var die2 = new Die('#die2')
 var $currentScore = $('#current-score')
 var currentScoreValue = 0
+var $gameMessage = $('#game-message-text')
+var $gameMessageDialog = $('#game-message')
+var $closeGameMessage = $('#close-message')
 
 var passTurn =  function(){
   socket.emit('pass turn', currentScoreValue);
@@ -36,12 +39,48 @@ var disableGameControls = function() {
 	$rollButton.attr('disabled', 'disabled');
 }
 
+var evaluateRoll = function(roll){
+  var message = '';
+  if(roll.die1.value == 1 && roll.die2.value ==1) {
+    console.log('snake eyes');
+    message = 'SNAKE EYES ... +25 pts and lose your turn'
+    $gameMessage.text(message)
+    $gameMessageDialog.show();
+    currentScoreValue = 25;
+    passTurn()
+  } else if(roll.die1.value == 1 || roll.die2.value == 1) {
+    console.log('lose your turn');
+    message = 'You rolled a 1. Your turn is over'
+    $gameMessage.text(message)
+    $gameMessageDialog.show();
+    currentScoreValue = 0;
+    passTurn()
+  } else if(roll.die1.value == roll.die2.value) {
+    console.log('double points');
+    message = 'DOUBLES!! Double points!!'
+    $gameMessage.text(message)
+    $gameMessageDialog.show();
+    currentScoreValue = currentScoreValue + (roll.die1.value*2) + (roll.die2.value*2);
+  } else {
+    console.log('add em up');
+    message = ''
+    currentScoreValue = currentScoreValue + roll.die1.value + roll.die2.value;
+  }
+  $currentScore.text(currentScoreValue)
+}
+
+$closeGameMessage.click(function(){
+  $gameMessageDialog.hide();
+})
+
 $holdButton.click(function(){
 	passTurn()
 });
 
 $rollButton.click(function(){
-    socket.emit('dice roll', roll());
+  rollResult = roll()
+  socket.emit('dice roll', rollResult);
+  evaluateRoll(rollResult);
 });
 
 var updateDieView = function(die) {
@@ -55,9 +94,6 @@ socket.on('dice rolled', function(roll){
   console.log(roll.die1);
   updateDieView(roll.die1);
   updateDieView(roll.die2);
-
-  currentScoreValue = currentScoreValue + roll.die1.value + roll.die2.value;
-  $currentScore.text(currentScoreValue)
 });
 
 socket.on('player list', function(players){

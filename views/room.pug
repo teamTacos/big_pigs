@@ -26,9 +26,9 @@ block content
             .panel-body
               .container-fluid
                 .clipzone
-                  img#die1.die.die-4(src='images/dice-26772_640.png')
+                  img#die1.die.die-1(src='images/dice-26772_640.png')
                 .clipzone
-                  img#die2.die.die-6(src='images/dice-26772_640.png')
+                  img#die2.die.die-1(src='images/dice-26772_640.png')
               .container-fluid
                 .h3 Current score:&nbsp;
                   span#current-score 0
@@ -62,6 +62,13 @@ block content
             .col-lg-12
               //a.btn.btn-default Cancel
               a#joinGame.btn.btn-primary(href='#') Join Game
+
+  .overlay#game-message(style='display:none')
+    .modal-dialog.modal-content
+      .modal-body
+        legend#game-message-header Message
+        p#game-message-text message text here
+        a#close-message.btn.btn-primary(href="#") Close
 
   .overlay#game-over(style='display:none')
     .modal-dialog.modal-content
